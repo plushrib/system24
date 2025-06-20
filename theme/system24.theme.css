@@ -1,11 +1,11 @@
 /**
- * @name system24
- * @description a tui-like discord theme.
+ * @name system24 (my fork)
+ * @description an epic fork of system24 :3 based on catppuccin mocha theme (https://catppuccin.com).
  * @author refact0r
  * @version 2.0.0
  * @invite nz87hXyvcy
- * @website https://github.com/refact0r/system24
- * @source https://github.com/refact0r/system24/blob/master/theme/system24.theme.css
+ * @website https://github.com/plushrib/system24
+ * @source https://github.com/refact0r/system24/blob/master/theme/system24-catppuccin-mocha.theme.css
  * @authorId 508863359777505290
  * @authorLink https://www.refact0r.dev
 */
@@ -17,7 +17,7 @@ body {
     /* font, change to '' for default discord font */
     --font: 'Monocraft'; /* change to '' for default discord font */
     --code-font: 'Monocraft'; /* change to '' for default discord font */
-    font-weight: 500; /* text font weight. 300 is light, 400 is normal. DOES NOT AFFECT BOLD TEXT */
+    font-weight: 400; /* text font weight. 300 is light, 400 is normal. DOES NOT AFFECT BOLD TEXT */
     letter-spacing: -0.05ch; /* decreases letter spacing for better readability. recommended on monospace fonts.*/
 
     /* sizes */
@@ -38,17 +38,17 @@ body {
     --subtle-top-bar-title: off; /* off: default, on: hide the icon and use subtle text color (like old discord) */
 
     /* window controls */
-    --custom-window-controls: off; /* off: default window controls, on: custom window controls */
+    --custom-window-controls: on; /* off: default window controls, on: custom window controls */
     --window-control-size: 14px; /* size of custom window controls */
 
     /* dms button options */
-    --custom-dms-icon: off; /* off: use default discord icon, hide: remove icon entirely, custom: use custom icon */
+    --custom-dms-icon: hide; /* off: use default discord icon, hide: remove icon entirely, custom: use custom icon */
     --dms-icon-svg-url: url(''); /* icon svg url. MUST BE A SVG. */
     --dms-icon-svg-size: 90%; /* size of the svg (css mask-size property) */
     --dms-icon-color-before: var(--icon-secondary); /* normal icon color */
     --dms-icon-color-after: var(--white); /* icon color when button is hovered/selected */
-    --custom-dms-background: off; /* off to disable, image to use a background image (must set url variable below), color to use a custom color/gradient */
-    --dms-background-image-url: url(''); /* url of the background image */
+    --custom-dms-background: image; /* off to disable, image to use a background image (must set url variable below), color to use a custom color/gradient */
+    --dms-background-image-url: url('https://raw.githubusercontent.com/catppuccin/catppuccin/refs/heads/main/assets/logos/exports/macchiato_square.png'); /* url of the background image */
     --dms-background-image-size: cover; /* size of the background image (css background-size property) */
     --dms-background-color: linear-gradient(70deg, var(--blue-2), var(--purple-2), var(--red-2)); /* fixed color/gradient (css background property) */
 
@@ -85,70 +85,84 @@ body {
 :root {
     --colors: on; /* off: discord default colors, on: midnight custom colors */
 
-    /* background colors */
-    --bg-0: #24273a; /* main background color. */
-    --bg-1: #1e2030; /* background color for secondary elements like code blocks, embeds, etc. */
-    --bg-2: #363a4f; /* color of neutral buttons. */
-    --bg-3: #494d64; /* color of neutral buttons when hovered. */
-    --rainbowz: linear-gradient(to right, var(--pink-mute), var(--yellow-mute), var(--green-mute), var(--blue-mute), transparent 80%);
-
-    /* state modifiers */
-    --hover: var(--rainbowz); /* color of hovered elements. */
-    --active: var(--rainbowz); /* color of elements when clicked. */
-    --selected: var(--active); /* color of selected elements. */
-
     /* text colors */
-    --txt-dark: var(--bg-0); /* color of dark text on colored backgrounds. */
-    --txt-link: var(--cyan); /* color of links. */
-    --txt-0: #eaeefa; /* color of bright/white text. */
-    --txt-1: #cad3f5; /* main text color. */
-    --txt-2: #939ab7; /* color of secondary text like channel list. */
-    --txt-3: #5b6078; /* color of muted text. */
+    --text-0: var(--bg-3); /* text on colored elements */
+    --text-1: hsl(226, 64%, 95%); /* other normally white text */
+    --text-2: #cdd6f4; /* headings and important text */
+    --text-3: #bac2de; /* normal text */
+    --text-4: #7f849c; /* icon buttons and channels */
+    --text-5: #585b70; /* muted channels/chats and timestamps */
+
+    /* background and dark colors */
+    --bg-1: #45475a; /* dark buttons when clicked */
+    --bg-2: #313244; /* dark buttons */
+    --bg-3: #181825; /* spacing, secondary elements */
+    --bg-4: #1e1e2e; /* main background color */
+    --rainbowz-mute: linear-gradient(to right in hsl longer hue, var(--red-mute), var(--blue-mute));
+    --hover: hsla(235, 15%, 53%, 0.1); /* channels and buttons when hovered */
+    --active: hsla(235, 15%, 53%, 0.2); /* channels and buttons when clicked or selected */
+    --active-2: hsla(235, 15%, 53%, 0.3); /* extra state for transparent buttons */
+    --message-hover: hsla(235, 0%, 0%, 0.1); /* messages when hovered */
 
     /* accent colors */
-    --acc-0: var(--lavender); /* main accent color. */
-    --acc-1: var(--lavender-1); /* color of accent buttons when hovered. */
-    --acc-2: var(--lavender-2); /* color of accent buttons when clicked. */
+    --accent-1: var(--purple-1); /* links and other accent text */
+    --accent-2: var(--purple-2); /* small accent elements */
+    --accent-3: var(--purple-3); /* accent buttons */
+    --accent-4: var(--purple-4); /* accent buttons when hovered */
+    --accent-5: var(--purple-5); /* accent buttons when clicked */
+    --accent-new: var(--accent-2); /* stuff that's normally red like mute/deafen buttons */
+    --mention: var(--rainbowz-mute); /* background of messages that mention you */
+    --mention-hover: linear-gradient(to right in hsl longer hue, var(--red-high), var(--blue-high)); /* background of messages that mention you when hovered */
+    --reply: linear-gradient(to right, color-mix(in hsl, var(--text-3), transparent 90%) 40%, transparent); /* background of messages that reply to you */
+    --reply-hover: linear-gradient(to right, color-mix(in hsl, var(--text-3), transparent 95%) 40%, transparent); /* background of messages that reply to you when hovered */
 
-    /* borders */
-    --border-width: 2px; /* panel border thickness. */
-    --border-color: var(--bg-2); /* panel border color. */
-    --border-hover-color: var(--acc-0); /* panel border color when hovered. */
-    --border-transition: 0.2s ease; /* panel border transition. */
+    /* status indicator colors */
+    --online: var(--green-2); /* change to #43a25a for default */
+    --dnd: var(--red-2); /* change to #d83a42 for default */
+    --idle: var(--yellow-2); /* change to #ca9654 for default */
+    --streaming: var(--purple-2); /* change to #593695 for default */
+    --offline: var(--text-4); /* change to #83838b for default offline color */
 
-    /* status dot colors */
-    --online-dot: var(--cyan); /* color of online dot. */
-    --dnd-dot: var(--pink); /* color of do not disturb dot. */
-    --idle-dot: var(--yellow); /* color of idle dot. */
-    --streaming-dot: var(--purple); /* color of streaming dot. */
+    /* border colors */
+    --border-light: var(--hover); /* general light border color */
+    --border: var(--active); /* general normal border color */
+    --border-hover: var(--accent-2); /* border color of panels when hovered */
+    --button-border: hsl(235, 0%, 100%, 0.1); /* neutral border color of buttons */
 
-    /* mention/ping and message colors */
-    --mention-txt: var(--acc-0); /* color of mention text. */
-    --mention-bg: color-mix(in oklch, var(--rainbowz), transparent 90%; /* background highlight of mention text. */
-    --mention-overlay: color-mix(in oklch, var(--acc-0), transparent 90%); /* overlay color of messages that mention you. */
-    --mention-hover-overlay: color-mix(in oklch, var(--acc-0), transparent 95%); /* overlay color of messages that mention you when hovered. */
-    --reply-overlay: var(--active); /* overlay color of message you are replying to. */
-    --reply-hover-overlay: var(--hover); /* overlay color of message you are replying to when hovered. */
+    /* base colors */
+    --red-1: hsl(343deg, 81%, 80%);
+    --red-2: hsl(343deg, 81%, 75%);
+    --red-3: hsl(343deg, 81%, 75%);
+    --red-4: hsl(343deg, 81%, 70%);
+    --red-5: hsl(343deg, 81%, 65%);
 
-    /* color shades */
-    --pink: oklch(73.7% 0.125 11.19);
-    --pink-1: oklch(63.7% 0.125 11.19);
-    --pink-2: oklch(53.7% 0.125 11.19);
-    --purple: oklch(77.15% 0.126 303.9);
-    --purple-1: oklch(67.15% 0.126 303.9);
-    --purple-2: oklch(57.15% 0.126 303.9);
-    --cyan: oklch(78.51% 0.085 228.38);
-    --yellow: oklch(84.177% 0.10681 83.049);
-    --green: oklch(83.5% 0.108 138.15);
-    --green-1: oklch(73.5% 0.108 138.15);
-    --green-2: oklch(63.5% 0.108 138.15);
-    --lavender: oklch(81.66% 0.091 277.31);
-    --lavender-1: oklch(71.66% 0.091 277.31);
-    --lavender-2: oklch(61.66% 0.091 277.31);
+    --green-1: hsl(115deg, 54%, 81%);
+    --green-2: hsl(115deg, 54%, 76%);
+    --green-3: hsl(115deg, 54%, 76%);
+    --green-4: hsl(115deg, 54%, 71%);
+    --green-5: hsl(115deg, 54%, 66%);
 
-    /* color shades (muted) */
-    --pink-mute: color-mix(in oklch, var(--pink-2), transparent 10%);
-    --yellow-mute: color-mix(in oklch, var(--yellow), transparent 40%);
-    --green-mute: color-mix(in oklch, var(--green), transparent 60%);
-    --blue-mute: color-mix(in oklch, var(--blue-2), transparent 80%);
+    --blue-1: hsl(199deg, 76%, 74%);
+    --blue-2: hsl(199deg, 76%, 69%);
+    --blue-3: hsl(199deg, 76%, 69%);
+    --blue-4: hsl(199deg, 76%, 64%);
+    --blue-5: hsl(199deg, 76%, 59%);
+
+    --yellow-1: hsl(41deg, 86%, 88%);
+    --yellow-2: hsl(41deg, 86%, 83%);
+    --yellow-3: hsl(41deg, 86%, 83%);
+    --yellow-4: hsl(41deg, 86%, 78%);
+    --yellow-5: hsl(41deg, 86%, 73%);
+
+    --purple-1: hsl(267deg, 84%, 86%);
+    --purple-2: hsl(267deg, 84%, 81%);
+    --purple-3: hsl(267deg, 84%, 81%);
+    --purple-4: hsl(267deg, 84%, 76%);
+    --purple-5: hsl(267deg, 84%, 71%);
+
+    --red-mute: color-mix(in hsl, var(--red-5), transparent 40%);
+    --blue-mute: color-mix(in hsl, var(--blue-5), transparent 90%);
+
+    --red-high: color-mix(in hsl, var(--red-2), transparent 40%);
+    --blue-high: color-mix(in hsl, var(--blue-2), transparent 90%);
 }
